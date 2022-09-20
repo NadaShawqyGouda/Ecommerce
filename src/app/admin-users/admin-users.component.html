@@ -1,0 +1,56 @@
+<div class="main-content-wrapper d-flex clearfix">
+    <app-admin-navbar></app-admin-navbar>
+
+    <div class="cart-table-area section-padding-100">
+        <div class="text-center w-100" *ngIf="loader">
+            <app-loader></app-loader>
+        </div>
+        <div class="container-fluid" *ngIf="!loader">
+            <div class="row">
+                <div class="col-12 col-lg-12" *ngIf="!empty">
+                    <div class="cart-title mt-50">
+                        <h2>Users</h2>
+                    </div>
+    
+                    <div class="cart-table clearfix">
+                        <table class="table table-responsive">
+                            <thead>
+                              <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Type</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr style="position: relative;" *ngFor="let user of users">
+                                <td class="cart_product_img">
+                                    <h5>{{user.username}}</h5>
+                                </td>
+                                <td class="cart_product_desc">
+                                    <h5>{{user.email}}</h5>
+                                </td>
+                                <td class="cart_product_desc">
+                                    <h5 *ngIf="!user.isAdmin">customer</h5>
+                                    <h5 *ngIf="user.isAdmin">Admin</h5>
+                                </td>
+                                <td class="cart_product_desc">
+                                    <button class="btn btn-primary btn-sm mr-1 mb-1" (click)="toggle(user)">Change Type</button>
+                                    <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">Delete</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+                <div class="no-items w-100 p-20 text-center" *ngIf="empty">
+                    <p>there are no Users</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success" *ngIf="success" style="position: fixed; top: 10px; right: 10px; z-index: 10000;">Deleted Successfuly</div>
+    <div class="alert alert-success" *ngIf="successUpdate" style="position: fixed; top: 10px; right: 10px; z-index: 1000000;">Updated Successfuly</div>
+
+</div>
+<app-admin-footer></app-admin-footer>

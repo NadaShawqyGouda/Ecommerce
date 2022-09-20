@@ -1,0 +1,20 @@
+.categoryTitle,
+.brandTitle{
+    text-transform: uppercase;
+    color: #666;
+    margin: 5px ;
+    letter-spacing: 0.5px;
+}
+.box{
+    height: 300px;
+}
+.boxp{
+    margin: 5px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+.widget-title{
+    color: #333;
+    text-transform: capitalize;
+    font-size: 20px;
+}

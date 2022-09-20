@@ -1,0 +1,117 @@
+<div class="main-content-wrapper d-flex clearfix">
+    <app-admin-navbar></app-admin-navbar>
+    <div class="cart-table-area section-padding-100">
+        <div class="text-center w-100" *ngIf="loader">
+            <app-loader></app-loader>
+        </div>
+        <div class="container-fluid" *ngIf="!loader">
+            <div class="row">
+                <div class="col-12">
+                    <div class="checkout_details_area mt-10 clearfix">
+
+                        <div class="cart-title">
+                            <h2>Manage Products</h2>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-9 mb-3"></div>
+                            
+                            
+                            <form class="container" [formGroup]="productForm">
+                                <h1 class="text-center text-primary pt-5">Add New Product</h1>
+                            
+                                <div class="form-group mt-4">
+                                    <input id="title" class="form-control" formControlName="title" type="text" name="pro-name" maxlength="20" placeholder="Product Title"> 
+                                </div>
+                            
+                                <div class="form-group">
+                                    <input id="price" class="form-control" formControlName="price" type="number" name="pro-prise" maxlength="5" placeholder="Product Price">
+                                </div>
+                            
+                                <div class="form-group">
+                                    <input id="description" class="form-control" formControlName="description" type="text" name="pro-description" placeholder="Product Description">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="count" class="form-control" formControlName="count" type="number" name="count" placeholder="Product count">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="color" class="form-control" formControlName="color" type="text" name="color" placeholder="Product color">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="size" class="form-control" formControlName="size" type="number" name="size" placeholder="Product size">
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="form-select form-select-lg mb-3" formControlName="category"  aria-label=".form-select-lg example" placeholder="category">
+                                        <option *ngFor="let category of categories">{{category.title}}</option>
+                                      </select>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <select class="form-select form-select-lg mb-3" formControlName="brand"  aria-label=".form-select-lg example" placeholder="category">
+                                        <option *ngFor="let brand of brands">{{brand.title}}</option>
+                                      </select>
+                                </div>
+                                
+                                <div class="form-group">
+                            
+                                    <input id="imageFile" class="form-control" type="file"  (change)="onChange($event)"/>
+                                    <img class="imgUpload" src="{{base64}}" alt="" *ngIf="img"/>
+                                </div>
+                            
+                                <button id="foradd" class="btn btn-primary w-25 p-3 mb-30" [disabled]="!productForm.valid" *ngIf="add" (click)="addProduct()">Add Product</button>
+                                <button id="forupdate" class="btn btn-warning w-25 p-3 mb-30" [disabled]="!productForm.valid" *ngIf="update" (click)="updateProduct(productForm)">Update Product</button>
+                            
+                                <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+                                
+                                
+                            </form>        
+                        </div>
+
+
+                        <div class="col-12">
+                            <h1 class="text-center text-primary">Our Product</h1>
+                        </div>
+                        <!-- Cards Area Start -->
+                        <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                            <div class="adjustWidth product" *ngFor="let i of allProduct">
+                                <div *ngIf="searchText === '' || i.title.toLowerCase().includes(searchText)">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <img src="{{i.image}}" class="w-100 ">
+                                            <h4>{{i.title}}</h4>
+                                            <p class="avaibility" *ngIf="i.count > 0"><i class="fa fa-circle" style="color: #fbb710;"></i> In Stock</p>
+                                            <p class="avaibility" *ngIf="i.count == 0"><i class="fa fa-circle" style="color: red;"></i> Out Of Stock</p>
+                                            <p>{{i.count}} pieces left</p>
+                                            <p>{{i.category}}</p>
+                                            <p>{{i.brand}}</p>
+                                            <p style="min-height: 150px;">{{i.description}}</p>
+                                            <span class="bg-primary p-2 po text-white">{{i.price}}</span>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="btn-toolbar" role="toolbar">
+                                                <button type="button" (click)="fillForm(i)" class="btn btn-primary btn-sm p-3 m-2 ">Update Product</button>
+                                                <button type="button" (click)="deleteProduct(i._id)" class="btn btn-danger btn-sm p-3 m-2 ">Delete Product</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success" *ngIf="success" style="position: fixed; top: 10px; right: 10px; z-index: 10000;">Added Successfuly</div>
+    <div class="alert alert-success" *ngIf="updateSuccess" style="position: fixed; top: 10px; right: 10px; z-index: 10000;">Updated Successfuly</div>
+</div>
+<app-admin-footer></app-admin-footer>
+
+
+
+
+

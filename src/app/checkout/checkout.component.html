@@ -1,0 +1,89 @@
+
+<app-header></app-header>
+<div class="main-content-wrapper d-flex clearfix">
+  <app-navbar></app-navbar>
+
+  <div class="cart-table-area section-padding-100" *ngIf="!loading">
+    <div class="text-center noItems" *ngIf="empty">
+      <h3>No items found</h3>
+      <p>Please add items in cart to be able to checkout </p>
+      <button class="btn btn-primary" routerLink="/shop">Go to shop</button>
+    </div>
+    <div class="container-fluid" *ngIf="!empty">
+        <div class="row">
+            <div class="col-12">
+                <div class="checkout_details_area mt-50 clearfix">
+
+                    <div class="cart-title">
+                        <h2>Checkout</h2>
+                    </div>
+
+                    <form [formGroup]="checkoutForm" (ngSubmit)="createOrder(checkoutForm)">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" formControlName="fname" id="first_name" value="" placeholder="First Name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" formControlName="lname" id="last_name" value="" placeholder="Last Name" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control mb-3" formControlName="address1" id="street_address" required placeholder="Address" value="">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" id="city" formControlName="address2" placeholder="Town" required value="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="zipCode" formControlName="zipCode" placeholder="Zip Code" value="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="number" class="form-control" id="phone_number" formControlName="phoneNumber" min="0" placeholder="Phone No" value="">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <textarea name="comment" class="form-control w-100" id="comment" formControlName="comment" cols="30" rows="10" placeholder="Leave a comment about your order"></textarea>
+                            </div>
+
+                            <div class="col-12">
+                              <div class="payment-method">
+                                <!-- Cash on delivery -->
+                                <div class="mr-sm-2">
+                                    <input type="radio" id="cod" value="cash"  name="payment" checked >
+                                    <label for="cod" style="margin-left: 10px;">Cash on Delivery</label>
+                                </div>
+                              </div>
+                            </div>
+                            
+
+                        </div>
+                        <div class="col-12 text-center">
+                            <div class="cart-summary">
+                                <h5>Cart Total</h5>
+                                <ul class="summary-table">
+                                    <li><span>subtotal:</span> <span>${{total}}</span></li>
+                                    <li><span>delivery:</span> <span>Free</span></li>
+                                    <li><span>total:</span> <span>${{total}}</span></li>
+                                </ul>
+            
+                                <div class="cart-btn mt-100">
+                                    <button class="btn amado-btn" [disabled]="checkoutForm.invalid">Order Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="alert alert-success" *ngIf="success" style="position: fixed; top: 10px; right: 10px; z-index: 10000;">Your Order Is Successfuly Send</div>
+</div>
+
+<div class="spinner-border loading text-dark" role="status" *ngIf="loading">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<app-footer></app-footer>
+
+

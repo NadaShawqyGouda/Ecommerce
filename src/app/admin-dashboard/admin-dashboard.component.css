@@ -1,0 +1,54 @@
+.d1
+{
+    font-size: 20px;
+    color: #444;
+}
+h4{
+    color: #444;
+    margin: 10px 0;
+}
+.po
+{
+    position: absolute;
+    top: 0%;
+    right: 4%;
+}
+.product{
+    margin-bottom: 30px;
+}
+.btn-toolbar{
+    display: flex;
+    justify-content: space-around;
+}
+.x
+{
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+.y
+{
+    margin-top: 20px!important;
+}
+img{
+    height: 350px;
+    border-radius: 10px;
+}
+
+.adjustWidth{
+    width: 50%
+}
+.card-body p{
+    padding: 0;
+    margin: 0;
+    color:#333
+}
+
+@media only screen and (max-width: 767px){
+    .main-content-wrapper .cart-table-area {
+        min-width: 100%;
+    }
+}

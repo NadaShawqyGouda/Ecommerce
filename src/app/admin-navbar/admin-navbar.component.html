@@ -1,0 +1,44 @@
+<div class="mobile-nav">
+    <!-- Navbar Brand -->
+    <div class="amado-navbar-brand">
+        <a routerLink="/home"><img src="../../assets/imgs/core-img/logo.png" alt=""></a>
+    </div>
+    <!-- Navbar Toggler -->
+    <div class="amado-navbar-toggler"  (click)="toggle()">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- Header Area Start -->
+<header class="header-area clearfix" [ngClass]="clicked ? 'bp-xs-on' : '' ">
+    <!-- Close Icon -->
+    <div class="nav-close"  (click)="toggle()">
+        <i class="fa fa-close" aria-hidden="true"></i>
+    </div>
+    <!-- Logo -->
+    <div class="logo">
+        <a routerLink="/home"><img src="../../assets/imgs/core-img/logo.png " alt=""></a>
+    </div>
+    <!-- Amado Nav -->
+    <nav class="amado-nav">
+        <ul>
+            <li [ngClass]="{active : productpage}"><a routerLink="/adminManageProduct">Products</a></li>
+            <li [ngClass]="{active : catpage}"><a routerLink="/adminCategory">Categories</a></li>
+            <li [ngClass]="{active : brandpage}"><a routerLink="/adminBrand">Brands</a></li>
+            <li [ngClass]="{active : orderpage}"><a routerLink="/adminOrders">Orders</a></li> 
+            <li [ngClass]="{active : userpage}"><a routerLink="/adminUsers">Users</a></li>
+            <li [ngClass]="{active : statpage}"><a routerLink="/stats">Statistics</a></li>
+        </ul>
+    </nav>
+    <!-- Button Group -->
+    <div class="amado-btn-group mb-100">
+        <button class="btn amado-btn mb-15" (click)="logout()">Logout</button>
+    </div>
+    <!-- Social Button -->
+    <div class="social-info d-flex justify-content-between">
+        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    </div>
+</header>

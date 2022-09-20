@@ -1,0 +1,122 @@
+<app-header></app-header>
+<div class="main-content-wrapper d-flex clearfix">
+  <app-navbar></app-navbar>
+
+  <div class="shop_sidebar_area" *ngIf="!loader">
+    <!-- ##### Single Widget ##### -->
+    <div class="widget catagory mb-50">
+      <!-- Widget Title -->
+      <h6 class="widget-title mb-30">Catagories</h6>
+
+      <!--  Catagories  -->
+      <div class="catagories-menu">
+        <ul>
+          <li *ngFor="let cat of categories" style="cursor: pointer;" class="categoryTitle" (click)="chooseCategory(cat.title)">{{cat.title}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ##### Single Widget ##### -->
+    <div class="widget brands mb-50">
+      <!-- Widget Title -->
+      <h6 class="widget-title mb-30">Brands</h6>
+
+      <div class="catagories-menu">
+        <ul>
+          <li *ngFor="let brand of brands" style="cursor: pointer;" class="brandTitle" (click)="chooseBrand(brand.title)" >{{brand.title}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ##### Single Widget ##### -->
+    <div class="widget color mb-50">
+      <!-- Widget Title -->
+      <h6 class="widget-title mb-30">Color</h6>
+
+      <div class="widget-desc">
+        <ul class="d-flex" style="cursor: pointer;">
+          <li (click)="getColor('white')"><a class="color1" id="white"></a></li>
+          <li (click)="getColor('black')"><a class="color3" id="black"></a></li>
+          <li (click)="getColor('blue')"><a class="color4" id="blue"></a></li>
+          <li (click)="getColor('red')"><a class="color5" id="red"></a></li>
+          <li (click)="getColor('orange')"><a class="color7" id="orange"></a></li>
+          <li (click)="getColor('brown')"><a class="color8" id="brown"></a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ##### Main Content Wrapper End ##### -->
+  <div class="amado_product_area section-padding-100">
+    <div class="text-center w-100" *ngIf="loader">
+      <app-loader></app-loader>
+    </div>
+    <div class="container-fluid" *ngIf="!loader">
+      <div class="row">
+        <div class="col-12">
+          <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="no-items w-100 p-20 text-center" *ngIf="empty">
+          <img src="../../assets/img/bg-img/box.png" class="box" />
+          <p class="boxp">no items to show</p>
+       </div>
+        <!-- Single Product Area -->
+        <div class="col-12 col-sm-6 col-md-12 col-xl-6" *ngFor="let product of products">
+          <div class="single-product-wrapper"  *ngIf="searchText === '' || product.title.toLowerCase().includes(searchText)">
+            <!-- Product Image -->
+            <div class="product-img" routerLink="/product/{{product._id}}" style="cursor: pointer;">
+              <img src="{{product.image}}" alt="{{product.title}}" />
+              <!-- Hover Thumb -->
+              <img
+                class="hover-img"
+                src="{{product.image}}"
+                alt=""
+              />
+            </div>
+
+            <!-- Product Description -->
+            <div
+              class="product-description d-flex align-items-center justify-content-between"
+            >
+              <!-- Product Meta Data -->
+              <div class="product-meta-data">
+                <div class="line"></div>
+                <p class="product-price">${{product.price}}</p>
+                <a href="product-details.html">
+                  <h6>{{product.category}}</h6>
+                </a>
+              </div>
+              <!-- Ratings & Cart -->
+              <div class="ratings-cart text-right">
+                <div class="ratings">
+                  <p class="avaibility" *ngIf="product.count > 0"><i class="fa fa-circle"></i> In Stock</p>
+                  <p class="avaibility" *ngIf="product.count == 0"><i class="fa fa-circle" style="color: red;"></i> Out Of Stock</p>
+                </div>
+                <div class="cart" (click)="addToCart(product._id)">
+                  <a
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="Add to Cart"
+                    ><img src="../../assets/img/core-img/cart.png" alt=""
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="alert alert-success" *ngIf="success" style="position: fixed; top: 10px; right: 10px; z-index: 10000;">Added Successfuly</div>
+</div>
+
+<app-footer></app-footer>
+
+
+

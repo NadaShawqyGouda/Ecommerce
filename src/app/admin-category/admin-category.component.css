@@ -1,0 +1,11 @@
+.categoryTitle{
+    margin: 20px auto;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+@media only screen and (max-width: 767px){
+    .main-content-wrapper .cart-table-area {
+        min-width: 100%;
+    }
+}

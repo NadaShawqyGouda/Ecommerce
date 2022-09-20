@@ -1,0 +1,37 @@
+<div class="hero" [ngClass]="{pageLoading: loading}">
+  <div class="login">
+    <form [formGroup]="registerForm" (ngSubmit)="registerFormData(registerForm)">
+      <h1>Sign Up</h1>
+
+      <div class="form_field">
+        <input type="text" placeholder="Username" formControlName="username"/>
+
+        <label for="">Username</label>
+      </div>
+
+      <div class="form_field">
+        <input type="email" required placeholder="email" formControlName="email"/>
+
+        <label for="">Email</label>
+      </div>
+
+      <div class="form_field">
+        <input type="password" required placeholder="password" formControlName="password" />
+        <label for="">Password</label>
+      </div>
+
+      <p class="wrongInfo" *ngIf="message">This username or Email already exists</p>
+
+      <input type="submit" [disabled]="registerForm.invalid==true" value="Sign up" />
+
+      <div class="change">Already have an account?<a routerLink="/login"> Login</a></div>
+    </form>
+  </div>
+</div>
+
+
+<div class="spinner-border loading" role="status" *ngIf="loading">
+  <span class="sr-only">Loading...</span>
+</div>
+
+

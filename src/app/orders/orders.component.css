@@ -1,0 +1,37 @@
+.no-items{
+    padding: 50px;
+  }
+  .no-items img{
+    border-radius: 20px;
+  }
+  .no-items p{
+    margin-top: 20px;
+    font-size: 23px;
+    text-transform: capitalize;
+  }
+.imgArrow{
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.cart-table{
+  text-align: center;
+  font-size: 18px;
+}
+.tableRows{
+  text-align: center;
+  color: #555;
+  font-size: 18px;
+  font-weight: lighter;
+}
+.dropdown{
+  display: none;
+}
+
+@media only screen and (max-width: 767px){
+  .main-content-wrapper .cart-table-area {
+      min-width: 100%;
+  }
+}
+  

@@ -1,0 +1,27 @@
+img{
+    width: 150px;
+    height: 150px
+}
+.main{
+    height: 100vh;
+    margin: auto;
+    margin-top: 100px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    align-items: center;
+}
+.container .thankyou{
+    font-size: 60px;
+    text-transform: uppercase;
+    color: #333;
+    margin: 10px 0;
+}
+.container .success_message{
+    color: #333;
+    font-size: 20px;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}

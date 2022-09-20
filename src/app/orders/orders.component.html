@@ -1,0 +1,102 @@
+<app-header></app-header>
+<div class="main-content-wrapper d-flex clearfix">
+  <app-navbar></app-navbar>
+
+
+  <div class="cart-table-area section-padding-100">
+    <div class="text-center w-100" *ngIf="loader">
+        <app-loader></app-loader>
+    </div>
+    <div class="container-fluid" *ngIf="!loader">
+        <div class="row">
+            <div class="col-12 col-lg-12" *ngIf="!empty">
+                <div class="cart-title mt-50">
+                    <h2>Orders</h2>
+                </div>
+
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of orders" style="position: relative;">
+                                <td class="cart_product_desc text-center">
+                                    <h5>${{order.amount}}</h5>
+                                </td>
+                                <td class="cart_product_desc text-center">
+                                    <h5>{{(order.createdAt).slice(0,10)}}</h5>
+                                </td>
+                                <td class="cart_product_desc text-center">
+                                    <h5>{{order.paymentStatus}}</h5>
+                                </td>
+                                <td class="cart_product_desc text-center">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" (click)="viewProducts(order)">
+                                        View
+                                    </button>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="no-items w-100 p-20 text-center" *ngIf="empty">
+                <img src="../../assets/img/bg-img/no items found.png" />
+                <p>there are no orders</p>
+                <button routerLink="/shop" class="btn amado-btn">Go to Checkout page</button>
+             </div>
+        </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="container-fluid mb-50">
+            <div class="">
+              <div class="col-12">
+                <div class="cart-title mt-50">
+                  <h2>Products</h2>
+                </div>
+      
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                          <tr class="tableRows">
+                            <th style="font-size: 16px; font-weight: 500;">Image</th>
+                            <th style="font-size: 16px; font-weight: 500;">Name</th>
+                            <th style="font-size: 16px; font-weight: 500;">Price</th>
+                            <th style="font-size: 16px; font-weight: 500;">Quantity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style="position: relative;" *ngFor="let product of products">
+                            <td class="cart_product_img">
+                                <img src="{{product.image}}" alt="Product" style="width: 70px; height: 70px">
+                            </td>
+                            <td class="cart_product_desc">
+                                <h5>{{product.name}}</h5>
+                            </td>
+                            <td class="price">
+                                <span>{{product.price}}</span>
+                            </td>
+                            <td class="qty">
+                                <span>{{product.quantity}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

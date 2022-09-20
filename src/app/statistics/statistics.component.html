@@ -1,0 +1,36 @@
+<div class="main-content-wrapper d-flex clearfix">
+    <app-admin-navbar></app-admin-navbar>
+    <div class="cart-table-area section-padding-100">
+        <div class="text-center w-100" *ngIf="loader">
+            <app-loader></app-loader>
+        </div>
+        <div class="container stats-wrabber" *ngIf="!loader"> 
+            <section class="statistics">
+                <div class="container">
+                    <article>
+                        <img src="../../assets/img/bg-img/icons8-user-60.png" />
+                        <h1 class="counter">{{usersNum.length}}</h1>
+                        <p>user</p>
+                    </article>
+                    <article>
+                        <img src="../../assets/img/bg-img/icons8-dolar-64.png" />
+                        <h1 class="counter">${{income}}</h1>
+                        <p>income</p>
+                    </article>
+                    <article>
+                        <img src="../../assets/img/bg-img/icons8-shopping-cart-50.png" />
+                        <h1 class="counter">{{products.length}}</h1>
+                        <p>product</p>
+                    </article>
+                    <article>
+                        <img src="../../assets/img/bg-img/icons8-order-64.png" />
+                        <h1 class="counter">{{orders.length}}</h1>
+                        <p>order</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<app-admin-footer></app-admin-footer>
+
